@@ -1,0 +1,17 @@
+
+TABLE:
+--------------
+CREATE TABLE 511_activity(
+player_id int,
+device_id int,
+event_date date,
+games_played int,
+primary key(player_id,event_date)
+);
+
+
+SOLVED:
+----------------
+SELECT player_id, min(event_date) as first_login
+FROM 511_activity
+GROUP BY player_id;

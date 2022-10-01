@@ -1,0 +1,18 @@
+
+CREATE TABLE ::
+-----------------------
+CREATE TABLE 596_courses(
+id int,
+student varchar(10),
+class varchar(50),
+primary key(id)
+);
+
+
+
+SOLUTION::
+---------------
+SELECT class
+FROM 596_courses
+GROUP BY class
+HAVING COUNT(DISTINCT student)>=5;

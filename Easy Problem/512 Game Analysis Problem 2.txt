@@ -1,0 +1,24 @@
+
+TABLE:
+----------
+CREATE TABLE 512_activity(
+player_id int,
+device_id int,
+event_date date,
+games_played int,
+primary key(player_id,event_date)
+);
+
+
+SOLVED:
+------------------
+SELECT player_id, min(event_date) as first_login,device_id
+FROM 511_activity
+GROUP BY player_id;
+
+SELECT player_id,device_id
+FROM 512_activity
+WHERE (player_id,event_date) IN
+(SELECT player_id, min(event_date)
+FROM 511_activity
+GROUP BY player_id);

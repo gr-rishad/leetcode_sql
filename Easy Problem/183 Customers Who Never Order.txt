@@ -1,0 +1,34 @@
+
+
+TABLE:
+-------
+
+CUSTOMERS:
+-----------
+CREATE TABLE 183_customers(
+id int, 
+name varchar(100),
+primary key(id)
+);
+
+ORDERS:
+-----------------
+CREATE TABLE 183_orders(
+id int,
+customerId int,
+primary key(id)
+);
+
+
+SOLVED PROBLEM:
+-----------------
+SELECT name 
+FROM 183_customers c
+WHERE c.id NOT IN(
+SELECT customerId
+FROM 183_orders);
+
+SELECT c.name
+FROM 183_customers c
+LEFT JOIN 183_orders o ON o.customerId=c.id
+WHERE o.customerId IS NULL;

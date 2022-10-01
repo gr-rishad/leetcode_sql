@@ -1,0 +1,24 @@
+
+TABLE:
+-----------
+CREATE TABLE 196_person(
+id int,
+email varchar(100),
+primary key(id)
+);
+
+
+SOLVED PROBLEM:
+-----------------
+DELETE p1
+FROM 196_person p1, 196_person p2
+WHERE p1.email=p2.email AND p1.id>p2.id;
+
+
+DELETE p.*
+FROM 196_person p
+WHERE p.email IN
+(SELECT email from (SELECT email
+FROM 196_person
+GROUP BY email
+HAVING COUNT(email)> 1)p) ;

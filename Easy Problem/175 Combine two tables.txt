@@ -1,0 +1,25 @@
+
+
+CREATE TABLE 175_Person(
+personId int,
+firstName varchar(100),
+lastName varchar(100),
+primary key(personId)
+);
+
+
+CREATE TABLE 175_Address(
+addressId int,
+personId int,
+city varchar(100),
+state varchar(100),
+primary key(addressId),
+foreign key(addressId) references 175_Person(personId)
+);
+
+
+SOLUTION
+----------------
+SELECT p.firstName,p.lastName,a.city,a.state 
+FROM 175_person p
+LEFT JOIN 175_address a ON a.personId=p.personId;

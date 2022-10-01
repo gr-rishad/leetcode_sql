@@ -1,0 +1,25 @@
+
+
+TABLE:
+-------------
+CREATE TABLE 577_employee(
+empId int,
+name varchar(100),
+supervisor varchar(100),
+salary int,
+primary key(empId)
+);
+
+CREATE TABLE 577_bonus(
+empId int,
+bonus int,
+primary key(empId)
+);
+
+
+SOLVED:
+--------------
+SELECT e.name, b.bonus
+FROM 577_bonus b
+RIGHT JOIN 577_employee e ON e.empId=b.empId
+WHERE b.bonus<1000 or b.bonus IS NULL;

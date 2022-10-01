@@ -1,0 +1,25 @@
+
+TABLE:
+---------
+
+CREATE TABLE 181_employee(
+id int,
+name varchar(100),
+salary double,
+managerId VARCHAR(100),
+primary key(id)
+);
+
+
+
+Solve CODE:
+-----------
+SELECT e.name
+FROM 181_employee e
+join  181_employee em 
+WHERE e.managerId=em.id AND e.salary > em.salary;
+
+SELECT e.name
+FROM 181_employee e
+left join  181_employee em ON e.managerId=em.id 
+WHERE e.salary > em.salary;

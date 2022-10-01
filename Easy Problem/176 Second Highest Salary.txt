@@ -1,0 +1,25 @@
+
+CREATE TABLE 
+---------------------
+CREATE TABLE 176_salary(
+id int,
+salary double,
+primary key (id)
+);
+
+
+SOLUTION
+---------------
+SELECT DISTINCT salary as SecondHighestSalary
+FROM 176_salary
+order by salary DESC
+LIMIT  1 OFFSET 1;
+
+SELECT MAX(salary) as SecondHighestSalary
+FROM 176_salary
+WHERE salary NOT IN (SELECT MAX(salary) FROM 176_salary);
+
+SELECT ifnull((SELECT DISTINCT salary 
+FROM 176_salary
+order by salary DESC
+LIMIT  1 OFFSET 4),NULL)as SecondHighestSalary;

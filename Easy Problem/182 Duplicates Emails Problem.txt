@@ -1,0 +1,29 @@
+
+
+TABLE:
+----
+CREATE TABLE 182_person(
+id int,
+email varchar(100),
+primary key (id)
+);
+
+
+SOLVED CODE:
+-------------
+SELECT email 
+from 182_person 
+GROUP BY email
+having count(email)>1;
+
+SELECT email, COUNT(email) as totalEmail
+FROM 182_person
+GROUP BY email
+having totalEmail>1;
+
+SELECT email
+FROM
+(SELECT email, COUNT(email) as totalEmail
+FROM 182_person
+GROUP BY email)p
+WHERE p.totalEmail>1;

@@ -1,0 +1,19 @@
+
+CREATE TABLE ::
+-----------------------
+CREATE TABLE 595_world(
+id int,
+name varchar(100),
+continent varchar(100),
+area varchar(100),
+population varchar(100),
+gdp varchar(100),
+primary key(id)
+);
+
+
+SOLUTION::
+-------------------
+SELECT name,population,area
+FROM 595_world
+WHERE area>3000000 OR population>25000000;

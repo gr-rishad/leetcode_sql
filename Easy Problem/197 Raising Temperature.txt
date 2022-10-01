@@ -1,0 +1,16 @@
+
+TABLE:
+----------
+CREATE TABLE 197_weather(
+id int,
+recordDate date ,
+temperature int,
+primary key(id)
+);
+
+
+PROBLEM SOLVED:
+--------------------
+SELECT w1.id
+FROM 197_weather w1, 197_weather w2
+WHERE w1.temperature> w2.temperature AND datediff(w1.recordDate,w2.recordDate)=1;
