@@ -1,0 +1,24 @@
+
+CREATE TABLE::
+----------------
+CREATE TABLE 603_cinema(
+seat_id int,
+free int,
+primary key(seat_id)
+);
+
+
+
+SOLUTION:
+-------------------
+SELECT c1.seat_id
+FROM 603_cinema c1, 603_cinema c2
+WHERE abs(c1.seat_id-c2.seat_id)=1
+AND c1.free=1 AND c2.free=1
+ORDER BY c1.seat_id;
+
+SELECT c1.seat_id
+FROM 603_cinema c1, 603_cinema c2
+WHERE ((c1.seat_id=c2.seat_id+1) OR (c1.seat_id=c2.seat_id-1))
+AND (c1.free=1 AND c2.free=1)
+GROUP BY c1.seat_id;
