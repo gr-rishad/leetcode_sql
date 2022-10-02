@@ -1,0 +1,15 @@
+TABLE:
+-------------
+
+CREATE TABLE 613_points(
+id int,
+x int,
+primary key(id)
+);
+
+
+SOLVED:
+---------
+SELECT min(abs(p1.x-p2.x)) as shortest
+FROM 613_points p1, 613_points p2
+WHERE p1.x != p2.x;

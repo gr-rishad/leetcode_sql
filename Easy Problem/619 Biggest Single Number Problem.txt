@@ -1,0 +1,29 @@
+TABLE:
+----------------
+
+CREATE TABLE 619_myNumbers(
+id int,
+num int,
+primary key(id)
+);
+
+
+
+
+
+SOLVED:
+------------------
+SELECT MAX(num) as num
+FROM 619_mynumbers m
+WHERE m.num NOT IN(
+SELECT num
+FROM 619_mynumbers
+GROUP BY num
+having COUNT(num)>1);
+
+SELECT MAX(num) as num
+FROM (
+SELECT num
+FROM 619_mynumbers
+GROUP BY num
+having COUNT(num)=1) m;

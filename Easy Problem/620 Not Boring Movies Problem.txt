@@ -1,0 +1,21 @@
+
+TABLE:
+------------
+CREATE TABLE 620_cinema(
+id int,
+movie varchar(100),
+description varchar(100),
+rating double,
+primary key(id)
+);
+
+
+SOLVED:
+-----------------
+SELECT *
+FROM 620_cinema c
+WHERE (c.id%2=1) AND (c.description !='boring')
+ORDER BY c.rating DESC
+
+
+

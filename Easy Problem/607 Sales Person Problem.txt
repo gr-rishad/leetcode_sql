@@ -1,0 +1,38 @@
+CREATE TABLE ::
+------------------
+CREATE TABLE 607_salesperson(
+sales_id int,
+name varchar(100),
+salary int,
+commission_rate int,
+hire_date date,
+primary key(sales_id)
+);
+
+CREATE TABLE 607_company(
+com_id int,
+name varchar(100),
+city varchar(100),
+primary key(com_id)
+);
+
+CREATE TABLE 607_orders(
+order_id int,
+order_date date,
+com_id int,
+sales_id int,
+amount int,
+primary key(order_id)
+);
+
+
+
+SOLUTION ::
+---------------------------
+SELECT s.name
+FROM 607_salesperson s 
+WHERE s.sales_id NOT IN(
+SELECT o.sales_id
+FROM 607_company c
+LEFT JOIN 607_orders o ON c.com_id=o.com_id
+WHERE c.name='RED')

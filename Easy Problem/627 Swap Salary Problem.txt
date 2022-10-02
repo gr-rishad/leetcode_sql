@@ -1,0 +1,17 @@
+
+TABLE:
+----------
+CREATE TABLE 627_salary(
+id int,
+name varchar(100),
+sex char(5),
+salary int,
+primary key(id)
+);
+
+
+
+SOLVED:
+---------------
+UPDATE  627_salary s
+SET s.sex= if(s.sex='m','f','m');

@@ -1,0 +1,18 @@
+
+TABLE:
+--------------
+CREATE TABLE 610_triangle(
+id int,
+x int,
+y int,
+z int,
+primary key(id)
+);
+
+
+
+SOLVED:
+-----------
+SELECT *,
+if(x+y>z AND x+z>y AND y+z>x,'Yes','No') as triangle
+FROM 610_triangle;

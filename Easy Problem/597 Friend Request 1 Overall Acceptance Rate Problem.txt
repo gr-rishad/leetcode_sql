@@ -1,0 +1,40 @@
+CREATE TABLE::
+--------------------
+CREATE TABLE 597_friendRequest(
+id int,
+sender_id int,
+send_to_id int,
+request_date date,
+primary key(id)
+);
+
+CREATE TABLE 597_requestAccepted(
+id int,
+requester_id int,
+accepter_id int,
+accept_date date,
+primary key(id)
+);
+
+
+SOLUTION::
+-------------------
+solution 1::
+--------------
+SELECT round(ifnull(sum(B)/SUM(A),0.0) ,2) as result
+FROM
+(
+SELECT  0 A,COUNT(*) as B
+FROM (SELECT DISTINCT requester_id,accepter_id
+FROM 597_requestaccepted) as A
+UNION All
+SELECT COUNT(*) as A,0 B
+FROM (SELECT DISTINCT sender_id,send_to_id as sendRequest
+FROM 597_friendrequest)as B) as C;
+
+solution 2::
+--------------
+SELECT round(ifnull((totalAccept/totalSend),0.00),2) as accept_rate
+FROM
+(SELECT COUNT(DISTINCT requester_id,accepter_id)as totalAccept, COUNT(DISTINCT sender_id,send_to_id) as totalSend
+FROM 597_requestaccepted as a, 597_friendrequest as f)as t
