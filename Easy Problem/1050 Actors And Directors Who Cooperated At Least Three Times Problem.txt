@@ -1,0 +1,18 @@
+
+TABLE:
+-------
+CREATE TABLE 1050_actorDirector(
+actor_id int,
+director_id int,
+timestamp int,
+primary key(timestamp)
+);
+
+
+
+SOLVED:
+---------
+SELECT actor_id,director_id
+FROM 1050_actordirector
+GROUP BY actor_id,director_id
+having COUNT(*)>=3;

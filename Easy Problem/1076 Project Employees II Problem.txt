@@ -1,0 +1,36 @@
+TABLE:::
+------------
+CREATE TABLE 1076_project(
+project_id int,
+employee_id int,
+primary key(project_id,employee_id),
+foreign key (employee_id) references 1076_employee(employee_id)
+);
+CREATE TABLE 1076_employee(
+employee_id int,
+name varchar(100),
+experience_years int,
+primary key(employee_id)
+);
+
+
+
+SOLVED::
+-------------
+SELECT p.project_id
+FROM 1075_employee e
+LEFT JOIN 1075_project p ON p.employee_id=e.employee_id
+GROUP BY project_id
+order by COUNT(p.employee_id) DESC
+LIMIT 1;
+
+
+select p.project_id
+from 1076_project p
+group by p.project_id
+having count(p.employee_id) = 
+    (select max(p1.employee_cnt)
+    from (select project_id, count(employee_id) as employee_cnt
+         from 1076_project
+         group by project_id) p1
+    )

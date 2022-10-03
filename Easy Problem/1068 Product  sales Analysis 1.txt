@@ -1,0 +1,23 @@
+
+TABLE:
+---------------------
+CREATE TABLE 1068_sales(
+sale_id int,
+product_id int,
+year int,
+quantity int,
+price int,
+primary key(sale_id,year),
+foreign key(product_id) references 1068_product(product_id)
+);
+CREATE TABLE 1068_product(
+product_id int,
+product_name varchar(100),
+primary key(product_id)
+);
+
+SOLVED:
+----------------
+SELECT p.product_name,year,s.price
+FROM 1068_sales s 
+LEFT JOIN 1068_product p ON p.product_id=s.product_id;

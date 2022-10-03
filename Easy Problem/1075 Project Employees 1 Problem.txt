@@ -1,0 +1,28 @@
+TABLE
+------------
+CREATE TABLE 1075_employee(
+employee_id int,
+name varchar(100),
+experience_years int,
+primary key(employee_id)
+);
+CREATE TABLE 1075_project(
+project_id int,
+employee_id int,
+primary key(project_id,employee_id),
+foreign key(employee_id) references 1075_employee(employee_id)
+);
+
+
+
+SOLVED:
+-----------
+SELECT p.project_id,round(AVG(e.experience_years),2) as average_years
+FROM 1075_employee e
+LEFT JOIN 1075_project p ON p.employee_id=e.employee_id
+GROUP BY p.project_id;
+
+SELECT p.project_id,round(SUM(e.experience_years)/COUNT(p.project_id),2) as average_years
+FROM 1075_employee e
+LEFT JOIN 1075_project p ON p.employee_id=e.employee_id
+GROUP BY p.project_id;

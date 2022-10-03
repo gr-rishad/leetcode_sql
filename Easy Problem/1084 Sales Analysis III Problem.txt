@@ -1,0 +1,11 @@
+
+
+SOLVED::
+
+----------------------------
+
+SELECT p.product_id,p.product_name
+FROM 1084_product p
+WHERE product_id NOT IN 
+(SELECT s.product_id FROM 1084_sales s
+WHERE sale_date > '2019-03-31' OR  sale_date < '2019-01-01' )

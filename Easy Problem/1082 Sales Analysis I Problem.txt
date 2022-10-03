@@ -1,0 +1,35 @@
+
+CREATE TABLE::
+--------------------
+
+CREATE TABLE 1082_product(
+product_id int,
+product_name varchar(100),
+unit_price int,
+primary key(product_id)
+);
+
+CREATE TABLE 1082_sales(
+id int,
+seller_id int,
+product_id int,
+buyer_id int,
+sale_date date,
+quantity int,
+price int,
+primary key(id),
+foreign key(product_id) references 1082_product  (product_id)
+);
+
+
+SOLVED::
+-----------
+SELECT seller_id
+FROM 1082_sales
+GROUP BY seller_id
+HAVING SUM(price)= (
+SELECT SUM(price)
+FROM 1082_sales
+GROUP BY seller_id
+ORDER BY SUM(price) DESC
+LIMIT 1)
