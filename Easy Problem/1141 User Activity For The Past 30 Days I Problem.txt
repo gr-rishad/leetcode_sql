@@ -1,0 +1,24 @@
+TABLE::
+------------
+CREATE TABLE 1141_activity(
+id int,
+user_id int,
+session_id int,
+activity_date date,
+activity_type ENUM('open_session', 'end_session', 'scroll_down', 'send_message'),
+primary key(id)
+);
+
+
+
+
+
+
+
+
+SOLVED::
+-----------------
+SELECT  COUNT(DISTINCT user_id),activity_date
+FROM 1141_activity
+WHERE activity_date< '2019-07-27'  AND  activity_date> '2019-06-26'
+GROUP BY activity_date;
