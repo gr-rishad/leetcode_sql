@@ -1,0 +1,29 @@
+TABLE::
+----------
+CREATE TABLE 1280_students(
+student_id int,
+student_name varchar(100),
+primary key(student_id)
+);
+
+CREATE TABLE 1280_subjects(
+subject_name varchar(100),
+primary key(subject_name)
+);
+
+CREATE TABLE 1280_examinations(
+id int,
+student_id int,
+subject_name varchar(100),
+primary key(id)
+);
+
+
+SOLUTION::
+--------------
+SELECT st.student_id,st.student_name,sub.subject_name,COUNT(ex.subject_name)
+FROM 1280_students st 
+JOIN 1280_subjects sub
+LEFT JOIN 1280_examinations ex ON ex.student_id=st.student_id AND ex.subject_name=sub.subject_name
+GROUP BY st.student_id,sub.subject_name
+ORDER BY st.student_id,sub.subject_name;

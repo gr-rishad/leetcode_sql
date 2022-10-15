@@ -1,0 +1,37 @@
+CREATE TABLE::
+----------------------
+CREATE TABLE 1241_submissions(
+id int,
+sub_id int,
+parent_id int,
+primary key(id)
+);
+
+
+SOLUTION::
+-----------------
+https://medium.com/@khasnobis.sanjit890/leetcode-problem-finding-number-of-comments-per-post-using-snowflake-and-pyspark-f7d055d8cd6d
+
+SELECT DISTINCT sub_id
+FROM 1241_submissions
+WHERE parent_id IS NULL;
+
+SELECT DISTINCT s.sub_id as sub_id,post.sub_id as post_id
+FROM 1241_submissions s
+RIGHT OUTER JOIN 
+(SELECT DISTINCT sub_id
+FROM 1241_submissions
+WHERE parent_id IS NULL) as post
+ON post.sub_id= s.parent_id ;
+
+
+SELECT post_id,COUNT(sub_id) as number_of_comments
+FROM
+(SELECT DISTINCT s.sub_id as sub_id,post.sub_id as post_id
+FROM 1241_submissions s
+RIGHT OUTER JOIN 
+(SELECT DISTINCT sub_id
+FROM 1241_submissions
+WHERE parent_id IS NULL) as post
+ON post.sub_id= s.parent_id)l
+GROUP BY post_id;

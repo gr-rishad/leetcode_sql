@@ -1,0 +1,18 @@
+TABLE::
+------------
+CREATE TABLE 1303_employee(
+employee_id int,
+team_id int,
+primary key(employee_id)
+);
+
+
+SOLUTION::
+------------------
+SELECT employee_id,b.team_size
+FROM 1303_employee em
+JOIN
+(SELECT e.team_id,COUNT(e.employee_id) AS team_size
+FROM 1303_employee e
+GROUP BY e.team_id)b
+WHERE em.team_id=b.team_id;

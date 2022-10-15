@@ -1,0 +1,26 @@
+TABLE::
+-------------
+CREATE TABLE 1294_countries(
+country_id int,
+country_name varchar(100),
+primary key(country_id)
+);
+
+CREATE TABLE 1294_weather(
+country_id int,
+weather_state varchar(100),
+day date,
+primary key(country_id,day)
+);
+
+SOLUTION::
+-------------------
+SELECT c.country_name,
+(CASE 
+	WHEN SUM(w.weather_state)/COUNT(w.country_id)<=15 THEN 'Cold'
+    WHEN SUM(w.weather_state)/COUNT(w.country_id)<25 THEN 'Warm' ELSE 'Hot' 
+END) as  weather_type 
+FROM 1294_weather w
+LEFT JOIN 1294_countries c ON c.country_id=w.country_id
+WHERE substr(w.day,6,7)=11
+GROUP BY c.country_id;

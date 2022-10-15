@@ -1,0 +1,19 @@
+TABLE::
+--------------------
+CREATE TABLE 1322_ads(
+ad_id int,
+user_id int,
+action enum('Clicked', 'Viewed', 'Ignored'),
+primary key(ad_id,user_id)
+);
+
+
+
+
+
+SOLUTION::
+----------------------
+SELECT a.ad_id,ifnull(ROUND(sum(a.action='Clicked')/sum(action != 'Ignored')*100,2),0) as ctr
+FROM 1322_ads a
+GROUP BY a.ad_id
+ORDER BY ctr DESC, ad_id;

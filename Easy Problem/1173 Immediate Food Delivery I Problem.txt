@@ -1,0 +1,15 @@
+
+
+SOLUTION::
+-------------------------
+SELECT round((100*d3.immediateOrder/COUNT(*)),2) as immediate_percentage
+FROM 1173_delivery d2,(
+SELECT COUNT(*) as immediateOrder
+FROM 1173_delivery d1
+WHERE d1.order_date=d1.customer_pref_delivery_date)d3;
+
+SELECT ROUND(100*SUM(CASE WHEN d.order_date=d.customer_pref_delivery_date THEN 1 ELSE 0 END)/COUNT(*),2) as immediate_percentage
+FROM 1173_delivery d;
+
+SELECT ROUND(AVG(CASE WHEN d.order_date=d.customer_pref_delivery_date THEN 1 ELSE 0 END )*100,2)as immediate_percentage
+FROM 1173_delivery d;
