@@ -1,0 +1,20 @@
+TABLE::
+-------------
+
+CREATE TABLE 1350_students(
+id int,
+name varchar(100),
+department_id int,
+primary key(id)
+);
+
+
+SOLUTION::
+----------------
+
+CREATE TABLE 1350_students(
+id int,
+name varchar(100),
+department_id int,
+primary key(id)
+);

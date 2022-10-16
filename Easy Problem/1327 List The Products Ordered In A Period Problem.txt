@@ -1,0 +1,20 @@
+TABLE::
+-------------
+CREATE TABLE 1327_orders(
+id int,
+product_id int,
+order_date date,
+unit int,
+primary key(id),
+foreign key (product_id) references 1327_products(product_id)
+);
+
+
+SOLUTION ::
+---------------
+SELECT p.product_name,SUM(o.unit) as totalUnit
+FROM 1327_products p 
+LEFT JOIN 1327_orders o ON o.product_id=p.product_id
+WHERE substr(o.order_date,1,7)='2020-02' 
+GROUP BY o.product_id
+HAVING totalUnit>=100;

@@ -1,0 +1,19 @@
+TABLE::
+-----------
+CREATE TABLE 1378_employees(
+id int,
+name varchar(100),
+primary key(id)
+);
+
+CREATE TABLE 1378_employeeUNI(
+id int,
+unique_id int,
+primary key(id,unique_id)
+);
+
+SOLUTION::
+---------------------
+SELECT eu.id as unique_id,e.name
+FROM 1378_employees e 
+LEFT JOIN 1378_employeeuni eu ON if(eu.id=e.id,e.id,null);

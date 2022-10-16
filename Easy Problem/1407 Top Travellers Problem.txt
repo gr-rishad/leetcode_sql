@@ -1,0 +1,24 @@
+TABLE::
+-----------------
+CREATE TABLE 1407_users(
+id int,
+name varchar(100),
+primary key(id)
+);
+
+CREATE TABLE 1407_rides(
+id int,
+user_id int,
+distance int,
+primary key(id)
+);
+
+
+
+SOLUTION::
+--------------
+SELECT u.name,ifnull(SUM(r.distance),0) as travelled_distance
+FROM 1407_users u
+LEFT JOIN 1407_rides r ON r.user_id=u.id
+GROUP BY u.id
+ORDER BY travelled_distance DESC, u.name ASC;

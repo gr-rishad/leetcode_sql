@@ -1,0 +1,16 @@
+TABLE::
+---------------
+CREATE TABLE 1484_activities(
+id int,
+sell_date date,
+product varchar(100),
+primary key(id)
+);
+
+
+
+SOLUTION::
+--------------
+SELECT sell_date, COUNT(DISTINCT product),group_concat(distinct product) as products
+FROM 1484_activities a
+GROUP BY sell_date;

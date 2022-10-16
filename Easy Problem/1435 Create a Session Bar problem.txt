@@ -1,0 +1,47 @@
+TABLE::
+----------
+CREATE TABLE 1435_sessions(
+session_id int,
+duration int,
+primary key(session_id)
+);
+
+
+
+SOLUTION::
+-----------------------
+1st SOLUTION::
+-----------------------------------------------------------------------------------------------
+SELECT '[0-5>' as bin,
+SUM(CASE WHEN duration/60<5 THEN 1 ELSE 0 END) as total
+FROM 1435_sessions
+union
+SELECT '[5-10>' as bin,
+SUM(CASE WHEN duration/60>=5 AND duration/60<10 THEN 1 ELSE 0 END) as total
+FROM 1435_sessions
+UNION
+SELECT '[10-15>' as bin,
+SUM(CASE WHEN duration/60>=10 AND duration/60<15 THEN 1 ELSE 0 END) as total
+FROM 1435_sessions
+UNION 
+SELECT '15 or more' as bin,
+SUM(CASE WHEN duration/60>15  THEN 1 ELSE 0 END) as total
+FROM 1435_sessions;
+
+2nd Solution::
+-------------------------------------------------------------------------------
+SELECT '[0-5' as bin,COUNT(session_id) as total
+FROM 1435_sessions
+WHERE duration<300
+UNION
+SELECT '[5-10' as bin,COUNT(session_id) as total
+FROM 1435_sessions
+WHERE duration>=300 AND duration<600
+UNION
+SELECT '[10-15' as bin,COUNT(session_id) as total
+FROM 1435_sessions
+WHERE duration>=600 AND duration<900
+UNION 
+SELECT '15 or more' as bin,COUNT(session_id) as total
+FROM 1435_sessions
+WHERE duration>=900;
