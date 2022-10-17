@@ -1,0 +1,15 @@
+TABLE::
+---------------
+CREATE TABLE 1527_patients(
+patient_id int,
+patient_name varchar(100),
+conditions varchar(100),
+primary key(patient_id)
+);
+
+
+SOLUTION::
+--------------
+SELECT patient_id,patient_name
+FROM 1527_patients
+WHERE conditions LIKE  'DIAB1%' OR conditions LIKE '% DIA1%';

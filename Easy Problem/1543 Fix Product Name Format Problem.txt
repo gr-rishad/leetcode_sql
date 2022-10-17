@@ -1,0 +1,19 @@
+TABLE::
+-----------------
+CREATE TABLE 1543_sales(
+sale_id int,
+product_name varchar(100),
+sale_date date,
+primary key(sale_id)
+);
+
+
+
+SOLUTION::
+---------------------
+SELECT a.productName,substr(a.sale_date,1,7) as sale_date,COUNT(a.productName)as total
+FROM(
+SELECT sale_id,trim(lower(product_name)) as productName,sale_date
+FROM 1543_sales)a
+GROUP BY substr(a.sale_date,1,7),a.productName
+ORDER BY a.productName ASC, a.sale_date

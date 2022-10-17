@@ -1,0 +1,26 @@
+TABLE::
+-------------
+CREATE TABLE 1587_users(
+account int,
+name varchar(100),
+primary key(account)
+);
+CREATE TABLE 1587_transactions(
+trans_id int,
+account int,
+amount int,
+transacted_on date,
+primary key(trans_id)
+);
+
+
+SOLUTION::
+--------------------
+SELECT u.name,a.balance
+FROM 1587_users u
+ JOIN 
+(SELECT t.account,SUM(t.amount) as balance
+FROM 1587_transactions t 
+GROUP BY t.account
+HAVING SUM(t.amount)>10000) a 
+ON a.account= u.account;

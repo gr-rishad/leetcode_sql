@@ -1,0 +1,18 @@
+TABLE::
+----------------
+
+CREATE TABLE 1565_orders(
+order_id int,
+order_date date,
+customer_id int,
+invoice int,
+primary key(order_id)
+);
+
+
+SOLUTION::
+------------------------
+ SELECT substr(o.order_date,1,7) as month,COUNT(DISTINCT invoice) as order_count,COUNT(DISTINCT customer_id)as customer_count
+ FROM 1565_orders o 
+ WHERE o.invoice>20
+ GROUP BY left(o.order_date,7);

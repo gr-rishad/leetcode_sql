@@ -1,0 +1,24 @@
+TABLE::
+------------
+CREATE TABLE 1495_tvprogram(
+program_date date,
+content_id int,
+channel varchar(100),
+primary key(program_date,content_id)
+);
+
+CREATE TABLE 1495_content(
+content_id varchar(100),
+title varchar(100),
+kids_content enum('Y', 'N'),
+content_type varchar(20),
+primary key(content_id)
+);
+
+
+SOLUTION::
+------------------------
+SELECT DISTINCT c.title
+FROM 1495_tvprogram tv
+LEFT JOIN 1495_content c ON c.content_id=tv.content_id
+WHERE c.content_type='Movies' AND (month(tv.program_date),year(tv.program_date))=(6,2020) AND c.kids_content='Y';

@@ -1,0 +1,29 @@
+TABLE::
+----------
+
+CREATE TABLE 1511_orders(
+order_id int,
+customer_id int,
+product_id int,
+order_date date,
+quantity int,
+primary key(order_id)
+);
+
+
+SOLUTION::
+----------------------
+SELECT c.customer_id,c.name
+FROM 1511_customers c
+JOIN
+(SELECT t.customer_id, COUNT(t.customer_id) as totalNum
+FROM 
+(SELECT o.customer_id,SUM(p.price*o.quantity) as total,if(substr(o.order_date,1,7)='2020-06','June','July') as month
+FROM 1511_product p
+LEFT JOIN 1511_orders o ON o.product_id=p.product_id
+WHERE substr(o.order_date,1,7)='2020-06' OR substr(o.order_date,1,7)='2020-07'
+GROUP BY o.customer_id,substr(o.order_date,1,7)
+HAVING total>=100)t 
+GROUP BY t.customer_id
+having totalNum>1)t2
+ON t2.customer_id=c.customer_id;

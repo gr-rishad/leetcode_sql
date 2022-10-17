@@ -1,0 +1,31 @@
+TABLE::
+------------
+CREATE TABLE 1607_customer(
+customer_id int,
+customer_name varchar(100),
+primary key(customer_id)
+);
+
+CREATE TABLE 1607_orders(
+order_id int,
+sale_date date,
+order_cost int,
+customer_id int,
+seller_id int,
+primary key(order_id)
+);
+
+CREATE TABLE 1607_seller(
+seller_id int,
+seller_name varchar(100),
+primary key(seller_id)
+);
+
+SOLUTION::
+----------------
+SELECT seller_name
+FROM 1607_seller
+WHERE seller_id NOT IN
+(SELECT DISTINCT o.seller_id
+FROM 1607_orders o
+WHERE year(o.sale_date)='2020');

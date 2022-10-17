@@ -1,0 +1,19 @@
+TABLE::
+------------
+CREATE TABLE 1571_products(
+product_id int,
+product_name  varchar(100),
+Width int,
+Length int,
+Height int,
+primary key(product_id)
+);
+
+
+
+SOLUTION::
+----------------
+SELECT w.name as warehouse_name, SUM(p.Height*p.Length*p.Width*w.units) as volume
+FROM 1571_products p
+LEFT JOIN 1571_warehouse w ON w.product_id=p.product_id
+GROUP BY w.name;
