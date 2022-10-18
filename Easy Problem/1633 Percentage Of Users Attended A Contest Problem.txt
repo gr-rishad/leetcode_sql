@@ -1,0 +1,27 @@
+TABLE::
+-----------
+CREATE TABLE 1633_users(
+user_id int,
+user_name varchar(100),
+primary key(user_id)
+);
+
+CREATE TABLE 1633_register(
+contest_id int,
+user_id int,
+primary key(contest_id,user_id)
+);
+
+
+SOLUTION::
+--------------
+SELECT r.contest_id,round((100*COUNT( r.contest_id)/(SELECT COUNT(DISTINCT user_id) FROM 1633_users)),2) as percentage
+FROM 1633_register r
+GROUP BY r.contest_id
+ORDER BY percentage DESC;
+
+select r.contest_id as contest_id, 
+    round(100*count(distinct r.user_id)/count(distinct u.user_id), 2) as percentage
+from 1633_register r, 1633_users u
+group by r.contest_id
+order by percentage desc, contest_id;

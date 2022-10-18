@@ -1,0 +1,28 @@
+TABLE::
+---------
+
+CREATE TABLE 1677_product(
+product_id int,
+name varchar(100),
+primary key(product_id)
+);
+
+CREATE TABLE 1677_invoice(
+invoice_id int,
+product_id int,
+rest int,
+paid  int,
+canceled int,
+refunded int,
+primary key(invoice_id)
+);
+
+
+
+SOLUTION::
+--------------------
+SELECT p.name,SUM(i.rest) as rest,SUM(i.paid) as paid, SUM(i.canceled) as canceled, SUM(i.refunded) as refunded
+FROM 1677_product p 
+JOIN 1677_invoice i ON i.product_id=p.product_id
+GROUP BY p.name
+ORDER BY p.name;

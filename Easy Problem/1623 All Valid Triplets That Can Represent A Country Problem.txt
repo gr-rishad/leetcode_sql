@@ -1,0 +1,28 @@
+TBALE:
+--------
+CREATE TABLE 1623_schoolA(
+student_id int,
+student_name varchar(100),
+primary key(student_id)
+);
+
+CREATE TABLE 1623_schoolB(
+student_id int,
+student_name varchar(100),
+primary key(student_id)
+);
+
+CREATE TABLE 1623_schoolC(
+student_id int,
+student_name varchar(100),
+primary key(student_id)
+);
+
+
+SOLUTION::
+---------------
+SELECT A.student_name AS 'member_A', B.student_name AS 'member_B', C.student_name AS 'member_C'
+FROM 1623_schoola A 
+JOIN 1623_schoolb B ON b.student_id != a.student_id AND A.student_name != B.student_name
+JOIN 1623_schoolc C ON C.student_id !=B.student_id AND C.student_id != A.student_id 
+AND A.student_name != C.student_name AND B.student_name != C.student_name;

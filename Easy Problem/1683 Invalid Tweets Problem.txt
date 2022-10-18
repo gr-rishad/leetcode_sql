@@ -1,0 +1,15 @@
+
+TABLE::
+--------------------
+CREATE TABLE 1683_tweets(
+tweet_id int,
+content varchar(100),
+primary key(tweet_id)
+);
+
+
+SOLUTION::
+--------------
+SELECT t.tweet_id
+FROM 1683_tweets t
+WHERE length(t.content)>15;
