@@ -1,0 +1,18 @@
+TABLE::
+-------------------
+
+CREATE TABLE 1693_dailySales(
+id int,
+date_id date,
+make_name varchar(20),
+lead_id int,
+partner_id int,
+primary key(id)
+);
+
+
+SOLUTION::
+----------------------
+SELECT d.date_id,d.make_name,COUNT(DISTINCT d.lead_id) as unique_leads, COUNT(DISTINCT d.partner_id) as unique_partners
+FROM 1693_dailysales d
+GROUP BY d.date_id,d.make_name;

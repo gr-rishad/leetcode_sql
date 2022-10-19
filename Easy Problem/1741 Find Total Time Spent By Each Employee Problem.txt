@@ -1,0 +1,18 @@
+TABLE:
+---------
+CREATE TABLE 1741_employees(
+emp_id int,
+event_day date,
+in_time int,
+out_time int,
+primary key(emp_id,event_day,in_time)
+);
+
+
+
+SOLUTION::
+---------------
+SELECT e.event_day as day,e.emp_id,SUM(e.out_time-e.in_time) as total_time
+FROM 1741_employees e 
+GROUP BY e.emp_id,e.event_day
+ORDER BY e.event_day;

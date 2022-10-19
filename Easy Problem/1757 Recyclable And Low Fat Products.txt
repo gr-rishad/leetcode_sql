@@ -1,0 +1,15 @@
+TABLE::
+----------
+CREATE TABLE 1757_products(
+product_id int,
+low_fats enum('Y', 'N'),
+recyclable enum('Y', 'N'),
+primary key(product_id)
+);
+
+
+SOLUTION::
+----------------
+SELECT p.product_id
+FROM 1757_products p
+WHERE p.low_fats= 'Y' AND p.recyclable='Y';

@@ -1,0 +1,16 @@
+
+TABLE::
+-------------
+CREATE TABLE 1890_logins(
+user_id int,
+time_stamp datetime,
+primary key(user_id,time_stamp)
+);
+
+SOLUTION::
+---------------
+
+SELECT l.user_id,MAX(l.time_stamp) as last_stamp
+FROM 1890_logins l
+WHERE year(l.time_stamp)='2020'
+GROUP BY l.user_id

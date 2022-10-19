@@ -1,0 +1,21 @@
+TABLE:
+---------------
+
+CREATE TABLE 1731_employees(
+employee_id int,
+name varchar(100),
+reports_to int,
+age int,
+primary key(employee_id)
+);
+
+
+
+
+SOLUTION:
+------------------
+SELECT e1.employee_id,e1.name,COUNT(e2.reports_to) as reports_count, floor(avg(e2.age)) as average_age
+FROM 1731_employees e1, 1731_employees e2
+WHERE e1.employee_id=e2.reports_to
+GROUP BY e1.employee_id
+ORDER BY e1.employee_id;

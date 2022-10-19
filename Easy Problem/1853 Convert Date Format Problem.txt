@@ -1,0 +1,14 @@
+TABLE::
+---------------
+CREATE TABLE 1853_days(
+day date,
+primary key(day)
+);
+
+
+
+SOLUTION::
+---------------------
+SELECT concat(dayname(day),", ",monthname(day)," ",day(day),", ",year(day))as day
+FROM 1853_days
+ORDER BY year(day) DESC;

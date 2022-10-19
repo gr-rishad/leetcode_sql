@@ -1,0 +1,20 @@
+TABLE::
+------------
+CREATE TABLE 1777_products(
+product_id int,
+store enum('store1', 'store2', 'store3'),
+price int,
+primary key(product_id,store)
+);
+
+
+
+
+SOLUTION::
+--------------------
+SELECT p.product_id,
+SUM(CASE WHEN p.store='store1' THEN price END) as store1,
+SUM(CASE WHEN p.store='store2' THEN price END) as store2,
+SUM(CASE WHEN p.store='store3' THEN price END) as store3
+FROM 1777_products p
+GROUP BY p.product_id;

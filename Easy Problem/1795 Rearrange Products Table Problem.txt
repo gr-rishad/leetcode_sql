@@ -1,0 +1,27 @@
+TABLE::
+--------------
+CREATE TABLE 1795_products(
+product_id int,
+store1 int,
+store2 int,
+store3 int,
+primary key(product_id)
+);
+
+
+SOLUTION::
+----------------
+SELECT e.*
+FROM
+(SELECT p.product_id,'store1' as store, store1 as price
+FROM 1795_products p
+WHERE p.store1 IS NOT NULL
+UNION
+SELECT p.product_id,'store2' as store, store2 as price
+FROM 1795_products p
+WHERE p.store2 IS NOT NULL
+UNION 
+SELECT p.product_id,'store3' as store, store3 as price
+FROM 1795_products p
+WHERE p.store3 IS NOT NULL)e
+ORDER BY e.product_id;

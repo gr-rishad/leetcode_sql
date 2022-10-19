@@ -1,0 +1,17 @@
+TABLE::
+-------------
+CREATE TABLE 1729_followers(
+user_id int,
+follower_id int,
+primary key(user_id, follower_id)
+);
+
+
+
+SOLUTION;;
+-------------
+CREATE TABLE 1729_followers(
+user_id int,
+follower_id int,
+primary key(user_id, follower_id)
+);

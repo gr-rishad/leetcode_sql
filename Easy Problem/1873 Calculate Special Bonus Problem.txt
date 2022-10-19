@@ -1,0 +1,17 @@
+
+TABLE::
+------------
+CREATE TABLE 1873_employees(
+employee_id int,
+name varchar(100),
+salary int ,
+primary key(employee_id)
+);
+
+
+
+SOLUTION::
+---------------------
+SELECT employee_id, CASE WHEN employee_id%2=1 AND substr(name,1,1) != 'M'  THEN salary ELSE 0 END as bonus
+FROM 1873_employees
+ORDER BY employee_id;

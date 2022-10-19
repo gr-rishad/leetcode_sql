@@ -1,0 +1,26 @@
+TABLE::
+-----------
+CREATE TABLE 1809_playback(
+session_id int,
+customer_id int,
+start_time int,
+end_time int,
+primary key(session_id)
+);
+
+CREATE TABLE 1809_ads(
+ad_id int,
+customer_id int,
+timestamp int,
+primary key(ad_id)
+);
+
+
+
+SOLUTION::
+----------------
+SELECT *
+FROM 1809_playback p
+LEFT JOIN 1809_ads a ON a.customer_id=p.customer_id 
+AND a.timestamp BETWEEN p.start_time AND p.end_time
+WHERE a.ad_id is NULL;
