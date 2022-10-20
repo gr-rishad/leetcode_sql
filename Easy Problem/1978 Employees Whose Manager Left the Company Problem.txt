@@ -1,0 +1,29 @@
+TABLE::
+---------------
+CREATE TABLE 1978_employees(
+employee_id int,
+name varchar(100),
+manager_id int,
+salary int,
+primary key(employee_id)
+);
+
+
+
+
+SOLUTION::
+----------
+SELECT e.employee_id
+FROM 1978_employees e 
+JOIN
+(SELECT manager_id
+FROM 1978_employees e 
+WHERE e.manager_id NOT IN(
+SELECT employee_id 
+FROM 1978_employees e
+))temp
+ON e.salary<30000 AND temp.manager_id= e.manager_id;
+
+SELECT e.employee_id
+FROM 1978_employees e
+WHERE e.manager_id IS NOT null AND e.manager_id NOT IN(SELECT employee_id FROM 1978_employees)

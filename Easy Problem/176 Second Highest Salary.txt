@@ -10,6 +10,13 @@ primary key (id)
 
 SOLUTION
 ---------------
+SELECT name, salary 
+FROM Employee e1 
+WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM Employee e2 
+WHERE e2.salary > e1.salary);
+
+
+
 SELECT DISTINCT salary as SecondHighestSalary
 FROM 176_salary
 order by salary DESC
