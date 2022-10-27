@@ -1,0 +1,5 @@
+SOLUTION::
+-----------------------------------
+
+SELECT player_id,event_date,SUM(games_played) OVER(partition by player_id ORDER BY event_date ASC )
+FROM 534_activity;

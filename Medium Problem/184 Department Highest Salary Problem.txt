@@ -1,0 +1,7 @@
+SELECT d.name AS 'Department', e.name as 'Employee',e.salary as 'Salary'
+FROM 184_department d
+JOIN 184_employee e ON e.departmentId= d.id
+WHERE (e.salary,d.id) IN (
+SELECT MAX(salary),departmentId
+FROM 184_employee
+GROUP BY departmentId) ;

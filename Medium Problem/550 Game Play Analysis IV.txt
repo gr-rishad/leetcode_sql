@@ -1,0 +1,7 @@
+SELECT ROUND(COUNT(b.player_id)/COUNT(DISTINCT a.player_id),2) as fraction 
+FROM
+(SELECT player_id,min(event_date)as first_login
+FROM 534_activity
+GROUP BY player_id)a
+LEFT JOIN 534_activity b
+ON datediff(b.event_date,a.first_login)=1 AND a.player_id=b.player_id;

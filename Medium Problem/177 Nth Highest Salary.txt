@@ -1,0 +1,5 @@
+SOLUTION:
+-----------
+SELECT e1.salary as 'getNthHighestSalary(2)'
+FROM 177_employee e1
+WHERE 2-1=(SELECT COUNT(DISTINCT salary) FROM 177_employee e2 WHERE e2.salary>e1.salary);

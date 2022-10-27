@@ -1,0 +1,18 @@
+SOLUTION::
+------------------------------------
+SELECT name 
+FROM 570_employee
+WHERE Id IN(
+SELECT ManagerId
+FROM 570_employee
+GROUP BY ManagerId
+HAVING COUNT(ManagerId)>=5);
+
+SELECT name 
+FROM 570_employee e1
+JOIN(
+SELECT ManagerId
+FROM 570_employee
+GROUP BY ManagerId
+HAVING COUNT(ManagerId)>=5)e2
+ON e1.Id=e2.ManagerId;

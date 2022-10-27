@@ -1,0 +1,5 @@
+SOLUTION::
+--------------------
+SELECT score, dense_rank() OVER(ORDER BY score DESC) as 'Rank'
+FROM 178_rank
+ORDER BY score DESC;
