@@ -1,0 +1,36 @@
+CREATE TABLE::
+--------------------------
+CREATE TABLE 574_candidate(
+id int, 
+name varchar(100),
+primary key(id)
+);
+
+CREATE TABLE 574_vote(
+id int,
+candidateId int,
+primary key(id)
+);
+
+
+
+
+SOLUTION:
+---------------------
+SELECT name
+FROM 574_candidate ca
+JOIN(
+SELECT candidateId
+FROM 574_vote
+GROUP BY candidateId
+ORDER BY COUNT(candidateId) DESC LIMIT 1) winnerId
+WHERE winnerId.candidateId = ca.id;
+
+
+SELECT name
+FROM 574_candidate ca
+WHERE ca.id=(
+SELECT candidateId
+FROM 574_vote
+GROUP BY candidateId
+ORDER BY COUNT(candidateId) DESC LIMIT 1);

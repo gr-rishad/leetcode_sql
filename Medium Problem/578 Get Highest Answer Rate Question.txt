@@ -1,0 +1,8 @@
+SELECT question_id as survey_log
+FROM(
+SELECT question_id,
+SUM(CASE WHEN action='answer' THEN 1 ELSE 0 END) as num_answer,
+SUM(CASE WHEN action='show' THEN 1 ELSE 0 END) as num_show
+FROM 578_survey_log
+GROUP BY question_id) t
+ORDER BY (t.num_answer/t.num_show) DESC LIMIT 1;
